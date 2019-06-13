@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Design Patterns Simulator6</title>
+    </h:head>
+    <h:body>
+
+        <h2>State Pattern</h2>
+        <h:form id="stateForm">
+
+            <p:outputLabel value="Current Inventory: #{stateBean.inventory}" />
+            <p:commandButton value="replenish" action="#{stateBean.replenish}" update="@form" />
+            <br/>
+
+            <p:commandButton value="insert Quarter" action="#{stateBean.insertedQuarter}" update="@form" />
+            <p:commandButton value="turn crank" action="#{stateBean.turnedCrank}" update="@form" />
+            <p:commandButton value="eject coin" action="#{stateBean.pressedEject}" update="@form" />
+            <br/>
+            <p:inputTextarea value="#{stateBean.logs}" readonly="true" rows="6" style="width: 99%;" id="logs"/>
+            <p:commandButton value="clear log" action="#{stateBean.clearLogs}" update="logs" />
+
+        </h:form>
+
+        <p:separator />
+
+        <h2>Protection Proxy Pattern</h2>
+        <h:form id="proxyForm">
+
+            Your details:<br/>
+            <p:panelGrid id="details1" columns="2" >
+                <p:outputLabel value="Your name:" for="nam" />
+                <p:inputText id="nam" value="#{proxyBean.person1Name}"  >
+                    <p:ajax  update="@form" event="change" />
+                </p:inputText>
+                <p:outputLabel value="Gender:" for="gen" />
+                <p:inputText id="gen" value="#{proxyBean.person1.gender}" disabled="true" >
+                    <p:ajax  update="@form" event="change" />
+                </p:inputText>
+                <p:outputLabel value="Interests:" for="int" />
+                <p:inputText id="int" value="#{proxyBean.person1.interests}" disabled="true" >
+                    <p:ajax  update="@form" event="change" />
+                </p:inputText>
+                <p:outputLabel value="Rating:" for="rat" />
+                <p:inputText id="rat" value="#{proxyBean.person1.hotOrNotRating}" disabled="true" >
+                    <p:ajax  update="@form" event="change" />
+                </p:inputText>
+            </p:panelGrid>
+
+            <br/>Your friend's details:<br/>
+            <p:panelGrid id="details2" columns="2" >
+                <p:outputLabel value="Your name:" for="nam2" />
+                <p:inputText id="nam2" value="#{proxyBean.person2Name}" 
+                             validator="#{proxyBean.validateName}" >
+                    <p:ajax update="@form" event="change" />
+                </p:inputText>
+                <p:outputLabel value="Gender:" for="gen2" />
+                <p:inputText id="gen2" value="#{proxyBean.person2.gender}" >
+                    <p:ajax  update="@form" event="change" />
+                </p:inputText>
+                <p:outputLabel value="Interests:" for="int2" />
+                <p:inputText id="int2" value="#{proxyBean.person2.interests}" 
+                             validator="#{proxyBean.validateInterests}" >
+                    <p:ajax  update="@form" event="change" resetValues="true" />
+                </p:inputText>
+                <p:outputLabel value="Rating:" for="rat2" />
+                <p:inputText id="rat2" value="#{proxyBean.person2.hotOrNotRating}" >
+                    <p:ajax  update="@form" event="change" />
+                </p:inputText>
+            </p:panelGrid>
+
+        </h:form>
+
+        <p:separator />
+
+    </h:body>
+</html>
+

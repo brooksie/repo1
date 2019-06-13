@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Design Patterns Simulator4</title>
+    </h:head>
+    <h:body>
+
+        <h2>Adapter Pattern</h2>
+        <h:form id="adapterForm">
+
+            <p:outputLabel for="duck" value="Duck:" />
+            <p:selectOneMenu id="duck" value="#{adapterBean.currentDuck}" converter="#{adapterBean.duckConverter}"   >
+                <f:selectItem itemLabel="Select One" itemValue="" />
+                <f:selectItems value="#{adapterBean.ducks}"  />
+            </p:selectOneMenu>
+
+            <p:commandButton action="#{adapterBean.performFly}" value="Fly" update="@form" />
+            <p:commandButton action="#{adapterBean.performQuack}" value="Quack" update="@form" />
+
+            <br/>
+            <p:inputTextarea value="#{adapterBean.logText}" rows="6" 
+                             style="width: 99%;" autoResize="false" readonly="true" />
+
+        </h:form>
+
+        <p:separator />
+
+        <h2>Facade Pattern</h2>
+        <h:form id="facadeForm">
+
+            <p:outputLabel value="Amp:" />
+            <p:inputSwitch value="#{facadeBean.amplifier.systemOn}" onLabel="on" offLabel="off" 
+                           label="amp" disabled="true"/>
+            <p:outputLabel value=" mode:#{facadeBean.amplifier.inputMode}" />
+            <p:outputLabel value=" sound:#{facadeBean.amplifier.soundMode}" />
+            <p:outputLabel value=" volume:#{facadeBean.amplifier.volume}" />
+            
+            <br/>
+            <p:outputLabel value="DVD Player: "/>
+            <p:inputSwitch value="#{facadeBean.dvdPlayer.systemOn}" onLabel="on" offLabel="off" 
+                           label="dvd" disabled="true"/>
+            <p:outputLabel value=" playing:#{facadeBean.dvdPlayer.playing}" />
+            <p:outputLabel value=" paused:#{facadeBean.dvdPlayer.paused}" />
+            <p:outputLabel value=" sound:#{facadeBean.dvdPlayer.soundMode}" />
+            <p:outputLabel value=" movie:#{facadeBean.dvdPlayer.movie}" />
+            <br/>
+            <p:outputLabel value="Projector: "/>
+            <p:inputSwitch value="#{facadeBean.projector.systemOn}" onLabel="on" offLabel="off" 
+                           label="proj" disabled="true"/>
+            <br/>
+            <p:outputLabel value="Screen: "/>
+            <p:inputSwitch value="#{facadeBean.screen.screenDown}" onLabel="down" offLabel="up" 
+                           label="scr." disabled="true"/>
+            <br/>
+            <p:outputLabel value="Tuner: "/>
+            <p:inputSwitch value="#{facadeBean.tuner.systemOn}" onLabel="on" offLabel="off" 
+                           label="radio" disabled="true"/>
+            <br/>
+            <p:outputLabel value="CD Player: "/>
+            <p:inputSwitch value="#{facadeBean.cdPlayer.systemOn}" onLabel="on" offLabel="off" 
+                           label="cd" disabled="true"/>
+            <br/>
+            <p:outputLabel value="Popcorn: "/>
+            <p:inputSwitch value="#{facadeBean.popcornPopper.systemOn}" onLabel="on" offLabel="off" 
+                           label="popper" disabled="true"/>
+            <br/>
+            <p:outputLabel value="Lights: "/>
+            <p:inputSwitch value="#{facadeBean.theatreLights.systemOn}" onLabel="on" offLabel="off" 
+                           label="light" disabled="true"/>
+
+            <br/>
+            <p:inputText label="Movie:" value="#{facadeBean.movie}" />
+            <br/>
+            <p:commandButton action="#{facadeBean.watchMovie}" value="Watch Movie!" update="@form" />
+            <p:commandButton action="#{facadeBean.endMovie}" value="End movie" update="@form" />
+
+        </h:form>
+
+
+
+    </h:body>
+</html>
+

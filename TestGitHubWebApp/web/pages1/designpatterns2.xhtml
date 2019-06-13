@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Design Patterns Simulator2</title>
+    </h:head>
+    <h:body>
+
+        <h2>Factory Method Pattern</h2>
+        <h:form id="factoryForm">
+            <p:outputLabel for="style" value="Pizza Style:" />
+            <p:selectOneRadio id="style" value="#{factoryBean.pizzaStyle}" required="true">
+                <f:selectItem itemLabel="NY" itemValue="NY" />
+                <f:selectItem itemLabel="Chicago" itemValue="Chicago" />
+                <f:selectItem itemLabel="Californian" itemValue="Californian" />
+            </p:selectOneRadio>
+            <br/>
+            <p:outputLabel for="type" value="Pizza Type:" />
+            <p:selectOneRadio id="type" value="#{factoryBean.pizzaType}" required="true">
+                <f:selectItem itemLabel="Cheese" itemValue="cheese" />
+                <f:selectItem itemLabel="Pepperoni" itemValue="pepperoni" />
+                <f:selectItem itemLabel="Clam" itemValue="clam" />
+            </p:selectOneRadio>
+            <br/>
+            <p:commandButton action="#{factoryBean.cook}" value="Order my pizza!" 
+                             update="@form" />
+        </h:form>
+
+        <p:separator />
+
+        <h2>Abstract Factory Pattern</h2>
+        <h:form id="factortForm2" >
+
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" >
+                <p:outputLabel for="style2" value="Pizza Style:" />
+                <p:selectOneRadio id="style2" value="#{factoryBean.pizzaStyle2}" required="true">
+                    <f:selectItem itemLabel="NY" itemValue="NY" />
+                    <f:selectItem itemLabel="Chicago" itemValue="Chicago" />
+                    <f:selectItem itemLabel="Californian" itemValue="Californian" />
+                </p:selectOneRadio>
+
+                <p:outputLabel for="type2" value="Pizza Type:" />
+                <p:selectOneMenu id="type2" value="#{factoryBean.pizzaType2}" style="width:125px">
+                    <f:selectItem itemLabel="Select One" itemValue="" />
+                    <f:selectItem itemLabel="Cheese" itemValue="cheese" />
+                    <f:selectItem itemLabel="Pepperoni" itemValue="pepperoni" />
+                    <f:selectItem itemLabel="Clam" itemValue="clam" />
+                    <f:selectItem itemLabel="Veggie" itemValue="veggie" />
+                </p:selectOneMenu>
+            </h:panelGrid>
+
+            <br/>
+            <p:commandButton value="Order" update="@form" icon="pi pi-check" action="#{factoryBean.cook2}" />
+        </h:form>
+
+        <p:separator />
+
+        <h2>Singleton Pattern</h2>
+        <h:form id="singletonForm">
+            <p:outputLabel value="Counter:" />
+            <p:outputLabel value="#{singletonBean.counter}" />
+            <br/>
+            <p:commandButton action="#{singletonBean.incrementCounter}" value="Increment" 
+                             update="@form" />
+        </h:form>
+
+    </h:body>
+</html>
+

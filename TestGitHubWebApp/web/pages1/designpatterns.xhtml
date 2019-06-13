@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Design Patterns Simulator</title>
+    </h:head>
+    <h:body>
+
+        <h2>Strategy Pattern</h2>
+        <h:form id="strategyForm">
+            <p:outputLabel for="btn" value="#{strategyBean.chapter1Output}" id="log" />
+            <br/>
+            <p:commandButton value="duck simulator" action="#{strategyBean.miniDuckSimulator}" 
+                             title="This is the title"
+                             update="log" 
+                             id="btn"     />
+        </h:form>
+
+        <p:separator />
+
+        <h2>Observer Pattern</h2>
+        <h:form id="observerForm" >
+            <p:outputLabel for="temp" value="Temperature (deg.C)" />
+            <p:inputNumber id="temp" value="#{observerBean.temperature}" >
+                <p:ajax update="disp" />
+            </p:inputNumber>
+            <p:outputLabel for="humidity" value="Humidity (%)" />
+            <p:inputNumber id="humidity" value="#{observerBean.humidity}" >
+                <p:ajax update="disp"/>
+            </p:inputNumber>
+            <p:outputLabel for="pressure" value="Pressure (millibar)" />
+            <p:inputNumber id="pressure" value="#{observerBean.pressure}" >
+                <p:ajax update="disp"/>
+            </p:inputNumber>
+
+            <br/><br/>
+
+            <p:panelGrid columns="3" layout="grid" id="disp" >
+                <h:panelGroup >
+                    <h:outputText value="Current Conditions" />
+                    <br/>
+                    <h:outputText value="Temp: " />
+                    <h:outputText value="#{observerBean.CCTemperature}" />
+                    <h:outputText value=" deg.C" />
+                    <br/>
+                    <h:outputText value="Humidity: " />
+                    <h:outputText value="#{observerBean.CCHumidity}"/>
+                    <h:outputText value="%" />
+                </h:panelGroup>
+                <h:panelGroup >
+                    <h:outputText value="Forecast" />
+                    <br/>
+                    <h:outputText value="Pressure: " />
+                    <h:outputText value="#{observerBean.FPressure}" />
+                    <h:outputText value=" mb" />
+                </h:panelGroup>
+                <h:panelGroup >
+                    <h:outputText value="Feels Like" />
+                    <br/>
+                    <h:outputText value="Heat Index: " />
+                    <h:outputText value="#{observerBean.HIndex}" />
+                    <h:outputText value=" deg.C" />
+                </h:panelGroup>
+
+
+                <h:panelGroup >
+                    <h:outputText value="Current Conditions" />
+                    <br/>
+                    <h:outputText value="Temp: " />
+                    <h:outputText value="#{observerBean.CCTemperature2}" />
+                    <h:outputText value=" deg.C" />
+                    <br/>
+                    <h:outputText value="Humidity: " />
+                    <h:outputText value="#{observerBean.CCHumidity2}" />
+                    <h:outputText value="%" />
+                </h:panelGroup>
+                <h:panelGroup >
+                    <h:outputText value="Forecast" />
+                    <br/>
+                    <h:outputText value="Pressure: " />
+                    <h:outputText value="#{observerBean.FPressure2}" />
+                    <h:outputText value=" mb" />
+                </h:panelGroup>
+                <h:panelGroup >
+                    <h:outputText value="Feels Like" />
+                    <br/>
+                    <h:outputText value="Heat Index: " />
+                    <h:outputText value="#{observerBean.HIndex2}" />
+                    <h:outputText value=" deg.C" />            
+                </h:panelGroup>
+            </p:panelGrid>
+        </h:form>
+
+        <p:separator />
+
+        <h2>Decorator Pattern</h2>
+        <h:form id="decoratorForm" >
+
+            <p:outputLabel for="console" value="Drinks:" />
+            <p:selectOneRadio id="console" value="#{decoratorBean.coffeeType}" required="true">
+                <f:selectItem itemLabel="House" itemValue="0" />
+                <f:selectItem itemLabel="Dark Roast" itemValue="1" />
+                <f:selectItem itemLabel="Decaf" itemValue="2" />
+                <f:selectItem itemLabel="Espresso" itemValue="3" />
+            </p:selectOneRadio>
+            <br/>
+            <p:selectBooleanButton value="#{decoratorBean.addMilk}" onLabel="Milk" offLabel="Milk" onIcon="fa fa-check" offIcon="fa fa-times" />
+            <p:selectBooleanButton value="#{decoratorBean.addMocha}" onLabel="Mocha" offLabel="Mocha" onIcon="fa fa-check" offIcon="fa fa-times" />
+            <p:selectBooleanButton value="#{decoratorBean.addSoy}" onLabel="Soy" offLabel="Soy" onIcon="fa fa-check" offIcon="fa fa-times" />
+            <p:selectBooleanButton value="#{decoratorBean.addWhip}" onLabel="Whip" offLabel="Whip" onIcon="fa fa-check" offIcon="fa fa-times" />
+            <br/>
+            <p:commandButton action="#{decoratorBean.barista}" value="make coffee!" 
+                             update="@form" />
+            <br/>
+            <p:outputLabel value="#{decoratorBean.beverageDesc}" />
+            <br/>
+            <p:outputLabel value="#{decoratorBean.beverageCost}" />
+        </h:form>
+
+        <br/><br/>
+
+        <h:form id="decoratorForm2" >
+            <h:outputText value="Check for: " />
+            <p:selectBooleanButton value="#{decoratorBean.ruleLength}" onLabel="Length" offLabel="Length" 
+                                   onIcon="fa fa-check" offIcon="fa fa-times" >
+                <p:ajax />
+            </p:selectBooleanButton>
+            <p:selectBooleanButton value="#{decoratorBean.ruleCapital}" onLabel="Capital" offLabel="Capital" 
+                                   onIcon="fa fa-check" offIcon="fa fa-times" >
+                <p:ajax />
+            </p:selectBooleanButton>
+            <p:selectBooleanButton value="#{decoratorBean.ruleNumber}" onLabel="Number" offLabel="Number" 
+                                   onIcon="fa fa-check" offIcon="fa fa-times" >
+                <p:ajax />
+            </p:selectBooleanButton>
+            <br/>
+            <p:outputLabel for="@next" value="Test Password: " />
+            <p:inputText value="#{decoratorBean.pwd}" validator="#{decoratorBean.validatePwd}" >
+            </p:inputText>
+            <p:commandButton value="test" update="@form"  />
+            <p:messages  />
+        </h:form>
+
+        <p:separator />
+
+    </h:body>
+</html>
+
